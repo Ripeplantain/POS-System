@@ -1,0 +1,78 @@
+
+{%extends 'base.html'%}
+
+{%load static%}
+
+
+{%block content%}
+<div class="container">
+    <div class="row text-center my-5">
+        <h1 class="text-uppercase admin-text">Product Dashboard</h1>
+    </div>
+
+    {%if messages%}
+    {%for message in messages%}
+    <div class="alert alert-secondary" role="alert">
+        {{message}}
+    </div>
+    {%endfor%}
+    {%endif%}
+
+   {%include 'includes/admin.html'%}
+
+
+    <div class="row my-5">
+        <table class="table caption-top">
+            <caption>List of products</caption>
+            <thead>
+                <tr>
+                    <th scope="">#</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Serial Number</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                {%for product in page.object_list%}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td><img src="{{product.image.url}}" class="img-fluid" width="100"></td>
+                    <td>{{product.name}}</td>
+                    <td>GH&#8373; {{product.price}}</td>
+                    <td>{{product.serial_number}}</td>
+                    <td>{{product.quantity}}</td>
+                    <td>
+                        <a href="{%url 'add_order' product.id%}" class="btn btn-dark">Order</a>
+                        <a href="{%url 'update_product' product.id%}" class="btn btn-primary">Update</a>
+                        <a href="{%url 'delete_product' product.id%}" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+                {%endfor%}
+            </tbody>
+        </table>
+    </div>
+    <div class="row my-4 text-center">
+        <div class="col">
+            <p>Page: {{page.number}}/{{page.paginator.num_pages}}</p>
+        </div>
+        <div class="col">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    {%if page.has_previous%}
+                    <li class="page-item"><a class="page-link" href="{%url 'view_products'%}?page={{page.previous_page_number}}">Previous</a></li>
+                    {%endif%}
+                    {%for i in page.paginator.page_range%}
+                    <li class="page-item"><a class="page-link" href="{%url 'view_products'%}?page={{i}}">{{i}}</a></li>
+                    {%endfor%}
+                    {%if page.has_next%}
+                    <li class="page-item"><a class="page-link" href="{%url 'view_products'%}?page={{page.next_page_number}}">Next</a></li>
+                    {%endif%}
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+{%endblock%}

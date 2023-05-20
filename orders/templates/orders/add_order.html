@@ -1,0 +1,30 @@
+{%extends 'base.html'%}
+
+{%load static%}
+
+
+{%block content%}
+
+<div class="container">
+    <h1 class="my-5 text-center text-uppercase">Add Order</h1>
+    <div class="row my-5">
+        <div class="col-md-6 mt-5">
+            <img src="{%static 'images/add.jpg'%}" class="img-fluid mt-5">
+        </div>
+        <div class="col-md-6 p-5">
+            <form method="POST" enctype="multipart/form-data">
+                {%csrf_token%}
+                {{form}}
+                <button class="btn btn-primary" type="submit">Add Order</button>
+                {%if form.errors%}
+                {%for error in form.errors%}
+                <div class="alert alert-primary" role="alert">
+                    {{error}}
+                </div>
+                {%endfor%}
+                {%endif%}
+            </form>
+        </div>
+    </div>
+</div>
+{%endblock%}

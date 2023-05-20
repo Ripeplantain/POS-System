@@ -1,0 +1,35 @@
+<nav class="navbar navbar-expand-lg bg-dark sticky-top" aria-label="Eleventh navbar example">
+    <div class="container">
+        <a class="navbar-brand text-uppercase me-5" href="#">
+            <h3 class="text-light">GIS Inventory System </h3>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample09"
+            aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExample09">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link text-light text-uppercase" aria-current="page" href="{%url 'view_products'%}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-light text-uppercase" href="{%url 'update_profile'%}">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-light text-uppercase" href="{%url 'add_users'%}">Users</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-light text-uppercase" href="{%url 'view_orders'%}">Orders</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-light text-uppercase" href="{%url 'logout'%}">Logout</a>
+                </li>
+            </ul>
+            <form role="search" method="POST">
+                {%csrf_token%}
+                <input class="form-control" type="search" placeholder="Search" aria-label="Search" name="search">
+            </form>
+        </div>
+    </div>
+</nav>

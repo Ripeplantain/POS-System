@@ -1,0 +1,46 @@
+{%extends 'base.html'%}
+
+{%load static%}
+
+{%block content%}
+
+<div class="container" style="height: 100vh;">
+    <div class="login-container d-flex justify-content-center align-items-center flex-column" style="height: 100vh;">
+        <div class="row">
+            <div class="col">
+                <h1 class="text-center text-uppercase">GIS Inventory System</h1>
+                <p class="text-center my-4 text-warning">Sign into your account</p>
+            </div>
+        </div>
+        <form action="" method="POST">
+            <div class="row">
+                <div class="col">
+                    <img src="{%static 'images/index.png'%}" alt="school_logo" class="img-fluid">
+                </div>
+                <div class="col m-auto">
+                    {%csrf_token%}
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="text" class="form-control" name="email">
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" name="password">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-center">
+                    <button type="submit" class="btn btn-primary btn-lg text-uppercase">Login</button>
+                </div>
+            </div>
+        </form>
+        <div class="row mt-4">
+            <div class="col">
+                <a href="{% url 'reset_password' %}" class="text-danger text-uppercase">Click here if forgot password?</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{%endblock%}
